@@ -30,20 +30,32 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
 
-        // body back
+        // body back (bottom)
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, -.25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, -.25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.5)));
+        // body back (top)
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.75, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.75, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.75, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.75, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.75, -.5)));
 
-        // body front
+        // body front (bottom)
         ItemStack item = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData());
-        parts.add(new ModelPart(item, new Vector(1, 1.5, .25)));
-        parts.add(new ModelPart(item, new Vector(-1, 1.5, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, .25)));
         parts.add(new ModelPart(item, new Vector(.5, 1.5, .4)));
         parts.add(new ModelPart(item, new Vector(-.5, 1.5, .4)));
         parts.add(new ModelPart(item, new Vector(0, 1.5, .5)));
+        // body front (top)
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.75, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.75, .25)));
+        parts.add(new ModelPart(item, new Vector(.5, 1.75, .4)));
+        parts.add(new ModelPart(item, new Vector(-.5, 1.75, .4)));
+        parts.add(new ModelPart(item, new Vector(0, 1.75, .5)));
 
     }
 
