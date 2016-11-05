@@ -2,13 +2,8 @@ package org.devathon.contest2016;
 
 import com.sun.istack.internal.NotNull;
 import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -19,14 +14,17 @@ import java.util.UUID;
  * @author Dean
  */
 public class SteVA implements Listener {
-    //region Initialization
 
     private final static Map<UUID, SteVA> players = new HashMap<>(4);
 
+    private final Model model;
     private final WeakReference<Player> player;
+    private final UUID id;
 
     public SteVA(Player player) {
         this.player = new WeakReference<>(player);
+        this.model = new Model(player.getLocation());
+        this.id = player.getUniqueId();
 
         Bukkit.getPluginManager().registerEvents(this, DevathonPlugin.getInstance());
     }
@@ -45,12 +43,11 @@ public class SteVA implements Listener {
         }
     }
 
-    //endregion
-
-    //region Visual
-
-    public void create() {
-
+    public void update() {
+        model.setLoc(getPlayer().getLocation());
     }
-    //endregion
+
+    public void destroy() {
+        players.remove(id);
+    }
 }
