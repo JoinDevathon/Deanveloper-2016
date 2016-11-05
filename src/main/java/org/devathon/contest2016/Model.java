@@ -22,51 +22,51 @@ public class Model {
     public Model(Location loc) {
         this.loc = loc;
         // feet
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.6, .5, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.6, .5, 0)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, .5, 0)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, .5, 0)));
 
         // legs
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, -.2)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
 
         // body back (bottom)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.5, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.5, -.25)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.5, -.4)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.5, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.5)));
         // body back (top)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 2, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 2, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2, -.25)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 2, -.4)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 2, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2, -.5)));
 
         // body front (bottom)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.5, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.5, .25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, .4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, .4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, .5)));
         // body front (top)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 2, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 2, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2, .25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2, .4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2, .4)));
         parts.add(new ModelPart(new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData()),
-                new Vector(0, 2, .5)));
+                new Vector(0, 2, .6)));
 
         // top
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, -.2)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 2.5, 0)));
     }
 
     public Location getLoc() {
