@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -31,18 +30,14 @@ public class DevathonPlugin extends JavaPlugin {
 
             @Override
             public void run() {
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    SteVA.getPlayers().get(p.getUniqueId()).update();
-                }
+                SteVA.getPlayers().values().forEach(SteVA::update);
             }
         }.runTaskTimer(this, 2L, 2L);
     }
 
     @Override
     public void onDisable() {
-
         mainWorld.getEntitiesByClass(ArmorStand.class).forEach(Entity::remove);
-
     }
 }
 

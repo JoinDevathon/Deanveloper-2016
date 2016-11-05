@@ -22,8 +22,8 @@ public class Model {
     public Model(Location loc) {
         this.loc = loc;
         // legs
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, .5, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.6, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.6, .5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 1, 0)));
@@ -33,8 +33,9 @@ public class Model {
         // body
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, -.25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.5)));
     }
 
     public Location getLoc() {
@@ -49,12 +50,6 @@ public class Model {
             Vector afterRotation = rotateAroundY(part.relativeLoc, Math.toRadians(loc.getYaw()));
             Location partLoc = loc.clone().add(afterRotation);
             part.stand.teleport(partLoc);
-
-            if(part == parts.get(parts.size()-1)) {
-                Bukkit.getLogger().info(
-                        String.format("[%.3f,%.3f]", afterRotation.getX(), afterRotation.getZ())
-                );
-            }
         }
     }
 
@@ -62,11 +57,11 @@ public class Model {
         Vector result = vec.clone();
         double x = result.getX();
         double z = result.getZ();
-        double sin = Math.sin(rad);
-        double cos = Math.cos(rad);
+        double sin = Math.sin(-rad);
+        double cos = Math.cos(-rad);
 
         result.setX(z * sin + x * cos);
-        result.setZ(z * cos + x * sin);
+        result.setZ(z * cos - x * sin);
 
         return result;
     }
