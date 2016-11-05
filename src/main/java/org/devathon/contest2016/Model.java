@@ -15,7 +15,7 @@ import java.util.List;
  * @author Dean
  */
 public class Model {
-    private static final Vector OFFSET = new Vector(0, -1.5, 0);
+    private static final Vector OFFSET = new Vector(0, -1.2, 0);
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
 
@@ -46,6 +46,8 @@ public class Model {
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, .5, 0)));
 
         // legs
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, .925, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, .925, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
@@ -53,34 +55,60 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
 
-        // body back (bottom)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.5, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.5, -.25)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.5, -.4)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.5, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.5)));
-        // body back (top)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2, -.25)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 2, -.4)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 2, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2, -.5)));
-
-        // body front (bottom)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.5, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.5, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, .4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, .4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, .5)));
-        // body front (top)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2, .4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2, .4)));
-        parts.add(new ModelPart(new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData()),
-                new Vector(0, 2, .6)));
-
+        // body back
+        // mid
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.75, -.2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.75, -.2)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.75, -.37)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.75, -.37)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 1.75, -.45)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 1.75, -.45)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.75, -.5)));
         // top
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.1, -.15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.1, -.15)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 2.1, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 2.1, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 2.1, -.4)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 2.1, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.1, -.45)));
+        // bottom
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.4, -.15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.4, -.15)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.4, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.4, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 1.4, -.4)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 1.4, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.4, -.45)));
+
+        // body front
+        // mid
+        ItemStack stack = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData());
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.75, .2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.75, .2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.75, .37)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.75, .37)));
+        parts.add(new ModelPart(stack, new Vector(.25, 1.75, .45)));
+        parts.add(new ModelPart(stack, new Vector(-.25, 1.75, .45)));
+        parts.add(new ModelPart(stack, new Vector(0, 1.75, .6)));
+        // top
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.1, .15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.1, .15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2.1, .3)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2.1, .3)));
+        parts.add(new ModelPart(stack, new Vector(.25, 2.1, .4)));
+        parts.add(new ModelPart(stack, new Vector(-.25, 2.1, .4)));
+        parts.add(new ModelPart(stack, new Vector(0, 2.1, .45)));
+        // bottom
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.4, .15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.4, .15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.4, .3)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.4, .3)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.25, 1.4, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.25, 1.4, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.4, .45)));
+
+        // tippy top
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, 0)));
