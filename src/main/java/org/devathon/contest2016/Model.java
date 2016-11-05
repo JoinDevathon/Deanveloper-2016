@@ -14,7 +14,7 @@ import java.util.List;
  * @author Dean
  */
 public class Model {
-    private static final Vector OFFSET = new Vector(0, -2, 0);
+    private static final Vector OFFSET = new Vector(0, -1.5, 0);
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
 
@@ -23,10 +23,10 @@ public class Model {
         // legs
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, .5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, .5, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, .75, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, .75, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, .75, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, .75, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
 
 
