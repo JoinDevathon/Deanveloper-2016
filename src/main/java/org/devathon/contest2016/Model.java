@@ -21,14 +21,17 @@ public class Model {
     @SuppressWarnings("deprecation")
     public Model(Location loc) {
         this.loc = loc;
-        // legs
+        // feet
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.6, .5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.6, .5, 0)));
+
+        // legs
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, -.2)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
 
         // body back (bottom)
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, -.25)));
@@ -37,26 +40,33 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.5)));
         // body back (top)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.75, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.75, -.25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.75, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.75, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.75, -.5)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 2, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 2, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2, -.5)));
 
         // body front (bottom)
-        ItemStack item = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData());
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, .25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, .25)));
-        parts.add(new ModelPart(item, new Vector(.5, 1.5, .4)));
-        parts.add(new ModelPart(item, new Vector(-.5, 1.5, .4)));
-        parts.add(new ModelPart(item, new Vector(0, 1.5, .5)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, .5)));
         // body front (top)
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.75, .25)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.75, .25)));
-        parts.add(new ModelPart(item, new Vector(.5, 1.75, .4)));
-        parts.add(new ModelPart(item, new Vector(-.5, 1.75, .4)));
-        parts.add(new ModelPart(item, new Vector(0, 1.75, .5)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 2, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 2, .25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2, .4)));
+        parts.add(new ModelPart(new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData()),
+                new Vector(0, 2, .5)));
 
+        // top
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, -.2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 2.5, 0)));
     }
 
     public Location getLoc() {
