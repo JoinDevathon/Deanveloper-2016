@@ -1,5 +1,6 @@
 package org.devathon.contest2016;
 
+import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,9 +19,26 @@ public class Model {
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
 
+    private static final ItemStack SKULL;
+
+    static {
+        SKULL = Bukkit.getUnsafe().modifyItemStack(new ItemStack(Material.SKULL, 1, (short) 3),
+                "{display:{Name:\"DVa\"}," +
+                        "SkullOwner:{Id:\"d8575558-fb10-4e97-b346-696541112f84\"," +
+                        "Properties:{textures:[{" +
+                        "Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3Jh" +
+                        "ZnQubmV0L3RleHR1cmUvZTI3NDkzNjhmZTgxYTZmZDA0MDI1N2UzOWIwMjQ3N2QyZGY0OTg5ZDkzM" +
+                        "WViNjUyNTI0MWRmOTY1MTkxMWYwIn19fQ==\"" +
+                        "}]}}}");
+    }
+
     @SuppressWarnings("deprecation")
     public Model(Location loc) {
         this.loc = loc;
+    }
+
+    @SuppressWarnings("deprecation")
+    public void populateModel() {
         // feet
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, .5, 0)));
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, .5, 0)));
@@ -67,6 +85,8 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, -.2)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 2.5, 0)));
+
+        parts.add(new ModelPart(SKULL, new Vector(0, 2, .6)));
     }
 
     public Location getLoc() {
