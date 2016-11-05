@@ -32,7 +32,7 @@ public class DevathonPlugin extends JavaPlugin {
             public void run() {
                 SteVA.getPlayers().values().forEach(SteVA::update);
             }
-        }.runTaskTimer(this, 2L, 2L);
+        }.runTaskTimer(this, 1L, 1L);
     }
 
     @Override

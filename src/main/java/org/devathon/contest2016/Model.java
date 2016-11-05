@@ -1,6 +1,5 @@
 package org.devathon.contest2016;
 
-import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,6 +18,7 @@ public class Model {
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
 
+    @SuppressWarnings("deprecation")
     public Model(Location loc) {
         this.loc = loc;
         // legs
@@ -30,12 +30,21 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
 
-        // body
+        // body back
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, -.25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, -.25)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.4)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.5)));
+
+        // body front
+        ItemStack item = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData());
+        parts.add(new ModelPart(item, new Vector(1, 1.5, .25)));
+        parts.add(new ModelPart(item, new Vector(-1, 1.5, .25)));
+        parts.add(new ModelPart(item, new Vector(.5, 1.5, .4)));
+        parts.add(new ModelPart(item, new Vector(-.5, 1.5, .4)));
+        parts.add(new ModelPart(item, new Vector(0, 1.5, .5)));
+
     }
 
     public Location getLoc() {
@@ -71,14 +80,19 @@ public class Model {
         private final Vector relativeLoc;
         private final ArmorStand stand;
 
-        private ModelPart(DyeColor dye, Vector relativeLoc) {
+        private ModelPart(ItemStack helm, Vector relativeLoc) {
             this.relativeLoc = relativeLoc.add(OFFSET);
             this.stand = DevathonPlugin.getMainWorld().spawn(loc.clone().add(relativeLoc), ArmorStand.class);
             stand.setVisible(false);
             stand.setSmall(false);
-            stand.setHelmet(new ItemStack(Material.STAINED_CLAY, 1, dye.getWoolData()));
+            stand.setHelmet(helm);
             stand.setGravity(false);
             stand.setInvulnerable(true);
+        }
+
+        private ModelPart(DyeColor dye, Vector relativeLoc) {
+            //noinspection deprecation
+            this(new ItemStack(Material.STAINED_CLAY, 1, dye.getWoolData()), relativeLoc);
         }
 
         public void destroy() {
