@@ -14,6 +14,7 @@ import java.util.List;
  * @author Dean
  */
 public class Model {
+    private static final Vector POS_X = new Vector(1, 0, 0);
     private static final Vector OFFSET = new Vector(0, -1, 0);
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
@@ -28,7 +29,20 @@ public class Model {
     }
 
     public void setLoc(Location loc) {
+        loc = loc.clone();
         this.loc = loc;
+
+        for (ModelPart part : parts) {
+            Location partLoc = loc.clone().add(part.relativeLoc);
+
+            partLoc.add(
+                    part.relativeLoc.getX() * Math.sin(loc.getDirection().angle(POS_X)),
+                    0,
+                    part.relativeLoc.getZ() * Math.cos(loc.getDirection().angle(POS_X))
+            );
+
+            part.stand.teleport(partLoc);
+        }
     }
 
     private class ModelPart {

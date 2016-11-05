@@ -14,7 +14,7 @@ public class MainListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        new SteVA(e.getPlayer()).create();
+        new SteVA(e.getPlayer());
         e.getPlayer().addPotionEffect(
                 new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
         );
