@@ -59,6 +59,7 @@ public class DevathonPlugin extends JavaPlugin {
                 dummy = null;
             }
         }
+        return true;
     }
 }
 

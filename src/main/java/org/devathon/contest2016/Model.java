@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -83,30 +84,30 @@ public class Model {
 
         // body front
         // mid
-        ItemStack stack = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.LIME.getWoolData());
+        ItemStack stack = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.LIME.getWoolData());
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.75, .2)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.75, .2)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.75, .37)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.75, .37)));
-        parts.add(new ModelPart(stack, new Vector(.25, 1.75, .45)));
-        parts.add(new ModelPart(stack, new Vector(-.25, 1.75, .45)));
-        parts.add(new ModelPart(stack, new Vector(0, 1.75, .6)));
+        parts.add(new ModelPart(stack, new Vector(.25, 1.75, .75)));
+        parts.add(new ModelPart(stack, new Vector(-.25, 1.75, .75)));
+        parts.add(new ModelPart(stack, new Vector(0, 1.75, .8)));
         // top
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.1, .15)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.1, .15)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2.1, .3)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2.1, .3)));
-        parts.add(new ModelPart(stack, new Vector(.25, 2.1, .4)));
-        parts.add(new ModelPart(stack, new Vector(-.25, 2.1, .4)));
-        parts.add(new ModelPart(stack, new Vector(0, 2.1, .45)));
+        parts.add(new ModelPart(stack, new Vector(.25, 2.1, .73)));
+        parts.add(new ModelPart(stack, new Vector(-.25, 2.1, .73)));
+        parts.add(new ModelPart(stack, new Vector(0, 2.1, .7), new EulerAngle(-Math.PI / 4, 0, 0)));
         // bottom
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.4, .15)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.4, .15)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.4, .3)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.4, .3)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.25, 1.4, .4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.25, 1.4, .4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.4, .45)));
+        parts.add(new ModelPart(stack, new Vector(.25, 1.4, .7)));
+        parts.add(new ModelPart(stack, new Vector(-.25, 1.4, .7)));
+        parts.add(new ModelPart(stack, new Vector(0, 1.4, .75), new EulerAngle(Math.PI / 4, 0, 0 )));
 
         // tippy top
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 2.5, 0)));
@@ -116,7 +117,7 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 2.5, 0)));
 
-        parts.add(new ModelPart(SKULL, new Vector(0, 2, .3)));
+        parts.add(new ModelPart(SKULL, new Vector(0, 2, -.35)));
     }
 
     public Location getLoc() {
@@ -152,7 +153,7 @@ public class Model {
         private final Vector relativeLoc;
         private final ArmorStand stand;
 
-        private ModelPart(ItemStack helm, Vector relativeLoc) {
+        private ModelPart(ItemStack helm, Vector relativeLoc, EulerAngle headPose) {
             this.relativeLoc = relativeLoc.add(OFFSET);
             this.stand = DevathonPlugin.getMainWorld().spawn(loc.clone().add(relativeLoc), ArmorStand.class);
             stand.setVisible(false);
@@ -160,6 +161,11 @@ public class Model {
             stand.setHelmet(helm);
             stand.setGravity(false);
             stand.setInvulnerable(true);
+            stand.setHeadPose(headPose);
+        }
+
+        private ModelPart(ItemStack helm, Vector relativeLoc) {
+            this(helm, relativeLoc, EulerAngle.ZERO);
         }
 
         private ModelPart(DyeColor dye, Vector relativeLoc) {
