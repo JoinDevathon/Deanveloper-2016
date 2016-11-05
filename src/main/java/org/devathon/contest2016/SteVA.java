@@ -48,5 +48,6 @@ public class SteVA implements Listener {
 
     public void destroy() {
         players.remove(id);
+        model.destroy();
     }
 }

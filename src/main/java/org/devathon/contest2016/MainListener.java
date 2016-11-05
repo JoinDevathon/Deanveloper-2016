@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * @author Dean
@@ -14,15 +15,20 @@ public class MainListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        new SteVA(e.getPlayer());
-        e.getPlayer().addPotionEffect(
-                new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
-        );
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                new SteVA(e.getPlayer());
+                e.getPlayer().addPotionEffect(
+                        new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
+                );
+            }
+        }.runTaskLater(DevathonPlugin.getInstance(), 5L);
     }
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        SteVA.getPlayers().remove(e.getPlayer().getUniqueId());
+        SteVA.getPlayers().get(e.getPlayer().getUniqueId()).destroy();
     }
 
 }

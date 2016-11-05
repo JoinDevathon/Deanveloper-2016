@@ -1,5 +1,6 @@
 package org.devathon.contest2016;
 
+import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,15 +22,19 @@ public class Model {
     public Model(Location loc) {
         this.loc = loc;
         // legs
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, .5, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, .5, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.8, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.8, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
 
-
+        // body
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1.5, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 1.5, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, -.25)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, -.25)));
     }
 
     public Location getLoc() {
@@ -44,6 +49,12 @@ public class Model {
             Vector afterRotation = rotateAroundY(part.relativeLoc, Math.toRadians(loc.getYaw()));
             Location partLoc = loc.clone().add(afterRotation);
             part.stand.teleport(partLoc);
+
+            if(part == parts.get(parts.size()-1)) {
+                Bukkit.getLogger().info(
+                        String.format("[%.3f,%.3f]", afterRotation.getX(), afterRotation.getZ())
+                );
+            }
         }
     }
 
@@ -74,5 +85,14 @@ public class Model {
             stand.setGravity(false);
             stand.setInvulnerable(true);
         }
+
+        public void destroy() {
+            stand.remove();
+        }
+    }
+
+    public void destroy() {
+        loc = null;
+        parts.forEach(ModelPart::destroy);
     }
 }
