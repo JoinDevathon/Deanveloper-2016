@@ -14,14 +14,17 @@ import java.util.List;
  * @author Dean
  */
 public class Model {
-    private static final Vector POS_X = new Vector(1, 0, 0);
-    private static final Vector OFFSET = new Vector(0, -1, 0);
+    private static final Vector OFFSET = new Vector(0, -2, 0);
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
 
     public Model(Location loc) {
         this.loc = loc;
         parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 0, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 0, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
     }
 
     public Location getLoc() {
@@ -33,16 +36,23 @@ public class Model {
         this.loc = loc;
 
         for (ModelPart part : parts) {
-            Location partLoc = loc.clone().add(part.relativeLoc);
-
-            partLoc.add(
-                    part.relativeLoc.getX() * Math.sin(loc.getDirection().angle(POS_X)),
-                    0,
-                    part.relativeLoc.getZ() * Math.cos(loc.getDirection().angle(POS_X))
-            );
-
+            Vector afterRotation = rotateAroundY(part.relativeLoc, Math.toRadians(loc.getYaw()));
+            Location partLoc = loc.clone().add(afterRotation);
             part.stand.teleport(partLoc);
         }
+    }
+
+    private Vector rotateAroundY(Vector vec, double rad) {
+        Vector result = vec.clone();
+        double x = result.getX();
+        double z = result.getZ();
+        double sin = Math.sin(rad);
+        double cos = Math.cos(rad);
+
+        result.setX(z * sin + x * cos);
+        result.setZ(z * cos + x * sin);
+
+        return result;
     }
 
     private class ModelPart {
@@ -57,6 +67,7 @@ public class Model {
             stand.setSmall(false);
             stand.setHelmet(new ItemStack(Material.STAINED_CLAY, 1, dye.getWoolData()));
             stand.setGravity(false);
+            stand.setInvulnerable(true);
         }
     }
 }

@@ -1,6 +1,5 @@
 package org.devathon.contest2016;
 
-import com.sun.istack.internal.NotNull;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -26,6 +25,7 @@ public class SteVA implements Listener {
         this.model = new Model(player.getLocation());
         this.id = player.getUniqueId();
 
+        players.put(player.getUniqueId(), this);
         Bukkit.getPluginManager().registerEvents(this, DevathonPlugin.getInstance());
     }
 
@@ -33,7 +33,6 @@ public class SteVA implements Listener {
         return players;
     }
 
-    @NotNull
     public Player getPlayer() {
         Player p = player.get();
         if (p != null) {

@@ -23,6 +23,7 @@ public class DevathonPlugin extends JavaPlugin {
         instance = this;
         mainWorld = Bukkit.getWorlds().get(0);
 
+        Bukkit.getPluginManager().registerEvents(new MainListener(), this);
         new BukkitRunnable() {
 
             @Override
