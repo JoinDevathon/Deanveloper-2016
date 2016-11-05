@@ -42,72 +42,56 @@ public class Model {
 
     @SuppressWarnings("deprecation")
     private void populateModel() {
-        // feet
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, .5, 0)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, .5, 0)));
-
         // legs
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, .925, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, .925, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.5, -.2)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 1, 0)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.4, .5, 0)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.4, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.4, .925, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, .925, 0)));
+        parts.add(new ModelPart(DyeColor.CYAN, new Vector(0, 1.15, 0)));
 
         // body back
         // mid
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.75, -.2)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.75, -.2)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.75, -.37)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.75, -.37)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 1.75, -.45)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 1.75, -.45)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.75, -.5)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.85, -.2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.85, -.2)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.85, -.37)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.85, -.37)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 1.85, -.45)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 1.85, -.45)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.85, -.5)));
         // top
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.1, -.15)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.1, -.15)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 2.1, -.3)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 2.1, -.3)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 2.1, -.4)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 2.1, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.1, -.45)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.2, -.15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.2, -.15)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 2.2, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 2.2, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 2.2, -.4)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 2.2, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 2.2, -.45)));
         // bottom
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.4, -.15)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.4, -.15)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.4, -.3)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.4, -.3)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 1.4, -.4)));
-        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 1.4, -.4)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.4, -.45)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, 1.5, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, 1.5, -.3)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(.25, 1.5, -.4)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.25, 1.5, -.4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, -.45)));
 
         // body front
         // mid
         ItemStack stack = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.LIME.getWoolData());
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.75, .2)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.75, .2)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.75, .37)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.75, .37)));
-        parts.add(new ModelPart(stack, new Vector(.25, 1.75, .75)));
-        parts.add(new ModelPart(stack, new Vector(-.25, 1.75, .75)));
-        parts.add(new ModelPart(stack, new Vector(0, 1.75, .8)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.85, .2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.85, .2)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.85, .37)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.85, .37)));
         // top
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.1, .15)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.1, .15)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2.1, .3)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2.1, .3)));
-        parts.add(new ModelPart(stack, new Vector(.25, 2.1, .73)));
-        parts.add(new ModelPart(stack, new Vector(-.25, 2.1, .73)));
-        parts.add(new ModelPart(stack, new Vector(0, 2.1, .7), new EulerAngle(-Math.PI / 4, 0, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 2.2, .15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 2.2, .15)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 2.2, .3)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 2.2, .3)));
         // bottom
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.75, 1.4, .15)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.75, 1.4, .15)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.4, .3)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.4, .3)));
-        parts.add(new ModelPart(stack, new Vector(.25, 1.4, .7)));
-        parts.add(new ModelPart(stack, new Vector(-.25, 1.4, .7)));
-        parts.add(new ModelPart(stack, new Vector(0, 1.4, .75), new EulerAngle(Math.PI / 4, 0, 0 )));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, 1.5, .3)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, 1.5, .3)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.25, 1.5, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.25, 1.5, .4)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1.5, .45)));
+
 
         // tippy top
         parts.add(new ModelPart(DyeColor.PINK, new Vector(.7, 2.5, 0)));
@@ -117,7 +101,46 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 2.5, 0)));
 
-        parts.add(new ModelPart(SKULL, new Vector(0, 2, -.35)));
+        // glass on front
+        // mid
+        parts.add(new ModelPart(stack, new Vector(.5, 1.53, .75), new EulerAngle(0, -Math.PI / 4, 0)));
+        parts.add(new ModelPart(stack, new Vector(-.5, 1.53, .75), new EulerAngle(0, Math.PI / 4, 0)));
+        parts.add(new ModelPart(stack, new Vector(0, 1.53, .96)));
+        // top
+        parts.add(new ModelPart(stack, new Vector(.5, 1.88, .75), new EulerAngle(0, -Math.PI / 4, 0)));
+        parts.add(new ModelPart(stack, new Vector(-.5, 1.88, .75), new EulerAngle(0, Math.PI / 4, 0)));
+        parts.add(new ModelPart(stack, new Vector(0, 1.88, .96)));
+
+        // tippy top glass
+        parts.add(new ModelPart(stack, new Vector(0, 2.5, 1.1), new EulerAngle(-Math.PI / 4, 0, 0)));
+        parts.add(new ModelPart(stack, new Vector(.65, 2.5, .85), new EulerAngle(-Math.PI / 4, -Math.PI / 4, 0)));
+        parts.add(new ModelPart(stack, new Vector(-.65, 2.5, .85), new EulerAngle(-Math.PI / 4, Math.PI / 4, 0)));
+
+        // shoulders
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(1, 2.4, 0)));
+        parts.add(new ModelPart(DyeColor.WHITE, new Vector(-1, 2.4, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3, 2.3, -.1)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3, 2.3, -.1)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3, 2.5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3, 2.5, -.1)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3, 2.5, -.1)));
+
+        // arms
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3 + i * .1, 2 - j * .1, 0)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3 - i * .1, 2 - j * .1, 0)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3 + i * .1, 2 - j * .1, .3)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3 - i * .1, 2 - j * .1, .3)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3 + i * .1, 2 - j * .1, .6)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3 - i * .1, 2 - j * .1, .6)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3 + i * .1, 2 - j * .1, .8)));
+                parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3 - i * .1, 2 - j * .1, .8)));
+            }
+        }
+
+        parts.add(new ModelPart(SKULL, new Vector(0, 2.1, -.35)));
     }
 
     public Location getLoc() {
