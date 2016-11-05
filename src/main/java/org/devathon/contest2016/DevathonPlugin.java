@@ -27,8 +27,6 @@ public class DevathonPlugin extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new MainListener(), this);
 
-        mainWorld.getEntitiesByClass(ArmorStand.class).forEach(Entity::remove);
-
         new BukkitRunnable() {
 
             @Override
@@ -42,6 +40,8 @@ public class DevathonPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
+        mainWorld.getEntitiesByClass(ArmorStand.class).forEach(Entity::remove);
 
     }
 }
