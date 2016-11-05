@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * @author Dean
  */
-interface AbilityBase {
-    ItemStack getItem();
-    void onRightClick(PlayerInteractEntityEvent e);
+public interface AbilityBase {
+    public ItemStack getItem();
+    public void onRightClick(PlayerInteractEntityEvent e);
 }

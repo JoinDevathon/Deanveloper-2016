@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.devathon.contest2016.abilities.Ability;
 
 /**
  * @author Dean
@@ -22,6 +23,12 @@ public class MainListener implements Listener {
                 e.getPlayer().addPotionEffect(
                         new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
                 );
+                for(Ability a : Ability.values()) {
+                    if (a.getAbility().getItem() == null) {
+                        continue;
+                    }
+                    e.getPlayer().getInventory().addItem(a.getAbility().getItem());
+                }
             }
         }.runTaskLater(DevathonPlugin.getInstance(), 5L);
     }

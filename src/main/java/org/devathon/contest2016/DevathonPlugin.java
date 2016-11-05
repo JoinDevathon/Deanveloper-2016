@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.devathon.contest2016.abilities.AbilityHandler;
 
 public class DevathonPlugin extends JavaPlugin {
     private static DevathonPlugin instance;
@@ -29,6 +30,7 @@ public class DevathonPlugin extends JavaPlugin {
         mainWorld = Bukkit.getWorlds().get(0);
 
         Bukkit.getPluginManager().registerEvents(new MainListener(), this);
+        Bukkit.getPluginManager().registerEvents(new AbilityHandler(), this);
 
         new BukkitRunnable() {
 

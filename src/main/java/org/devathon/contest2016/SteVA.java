@@ -42,6 +42,10 @@ public class SteVA implements Listener {
         }
     }
 
+    public IdleModel getModel() {
+        return model;
+    }
+
     public void update() {
         model.setLoc(getPlayer().getLocation());
     }

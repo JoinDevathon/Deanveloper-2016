@@ -1,14 +1,12 @@
 package org.devathon.contest2016.abilities;
 
-import org.bukkit.inventory.ItemStack;
-
 /**
  * @author Dean
  */
 public enum Ability {
     FUSION_CANNON(new FusionCannon()),
-    DEFENSE_MATRIX(),
-    BOOSTERS();
+    DEFENSE_MATRIX(new Placeholder()),
+    BOOSTERS(new Placeholder());
 
     private AbilityBase ability;
 
