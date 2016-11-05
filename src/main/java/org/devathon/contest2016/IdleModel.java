@@ -15,10 +15,12 @@ import java.util.List;
 /**
  * @author Dean
  */
-public class Model {
+public class IdleModel {
     private static final Vector OFFSET = new Vector(0, -1.2, 0);
     private Location loc;
     private final List<ModelPart> parts = new ArrayList<>();
+    private final ModelPart leftHand;
+    private final ModelPart rightHand;
 
     private static final ItemStack SKULL;
 
@@ -35,9 +37,12 @@ public class Model {
     }
 
     @SuppressWarnings("deprecation")
-    public Model(Location loc) {
+    public IdleModel(Location loc) {
         this.loc = loc;
         populateModel();
+
+        leftHand = parts.get(parts.size() - 1);
+        rightHand = parts.get(parts.size() - 1);
     }
 
     @SuppressWarnings("deprecation")
@@ -145,6 +150,14 @@ public class Model {
 
     public Location getLoc() {
         return loc;
+    }
+
+    public Location leftHandLoc() {
+        return leftHand.stand.getEyeLocation();
+    }
+
+    public Location rightHandLoc() {
+        return rightHand.stand.getEyeLocation();
     }
 
     public void setLoc(Location loc) {

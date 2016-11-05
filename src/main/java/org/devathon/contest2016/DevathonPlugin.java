@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class DevathonPlugin extends JavaPlugin {
     private static DevathonPlugin instance;
     private static World mainWorld;
-    private Model dummy;
+    private IdleModel dummy;
 
     public static DevathonPlugin getInstance() {
         return instance;
@@ -52,7 +52,7 @@ public class DevathonPlugin extends JavaPlugin {
                 if(dummy != null) {
                     dummy.setLoc(p.getLocation());
                 } else {
-                    dummy = new Model(p.getLocation());
+                    dummy = new IdleModel(p.getLocation());
                 }
             } else if (args[0].equalsIgnoreCase("clear")){
                 dummy.destroy();

@@ -16,13 +16,13 @@ public class SteVA implements Listener {
 
     private final static Map<UUID, SteVA> players = new HashMap<>(4);
 
-    private final Model model;
+    private final IdleModel model;
     private final WeakReference<Player> player;
     private final UUID id;
 
     public SteVA(Player player) {
         this.player = new WeakReference<>(player);
-        this.model = new Model(player.getLocation());
+        this.model = new IdleModel(player.getLocation());
         this.id = player.getUniqueId();
 
         players.put(player.getUniqueId(), this);
