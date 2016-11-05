@@ -22,7 +22,8 @@ public class Model {
     private static final ItemStack SKULL;
 
     static {
-        SKULL = Bukkit.getUnsafe().modifyItemStack(new ItemStack(Material.SKULL, 1, (short) 3),
+        //noinspection deprecation
+        SKULL = Bukkit.getUnsafe().modifyItemStack(new ItemStack(Material.SKULL_ITEM, 1, (short) 3),
                 "{display:{Name:\"DVa\"}," +
                         "SkullOwner:{Id:\"d8575558-fb10-4e97-b346-696541112f84\"," +
                         "Properties:{textures:[{" +
@@ -35,10 +36,11 @@ public class Model {
     @SuppressWarnings("deprecation")
     public Model(Location loc) {
         this.loc = loc;
+        populateModel();
     }
 
     @SuppressWarnings("deprecation")
-    public void populateModel() {
+    private void populateModel() {
         // feet
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(.5, .5, 0)));
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.5, .5, 0)));
@@ -86,7 +88,7 @@ public class Model {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.4, 2.5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-.7, 2.5, 0)));
 
-        parts.add(new ModelPart(SKULL, new Vector(0, 2, .6)));
+        parts.add(new ModelPart(SKULL, new Vector(0, 2, .3)));
     }
 
     public Location getLoc() {
@@ -126,7 +128,7 @@ public class Model {
             this.relativeLoc = relativeLoc.add(OFFSET);
             this.stand = DevathonPlugin.getMainWorld().spawn(loc.clone().add(relativeLoc), ArmorStand.class);
             stand.setVisible(false);
-            stand.setSmall(false);
+            stand.setSmall(true);
             stand.setHelmet(helm);
             stand.setGravity(false);
             stand.setInvulnerable(true);
