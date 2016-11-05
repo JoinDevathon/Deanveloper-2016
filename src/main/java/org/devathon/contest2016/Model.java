@@ -20,11 +20,16 @@ public class Model {
 
     public Model(Location loc) {
         this.loc = loc;
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 0, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, 1, 0)));
-        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, 0, 0)));
+        // legs
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, .5, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, .5, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-1, .75, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(1, .75, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(.5, .75, 0)));
+        parts.add(new ModelPart(DyeColor.PINK, new Vector(-.5, .75, 0)));
         parts.add(new ModelPart(DyeColor.PINK, new Vector(0, 1, 0)));
+
+
     }
 
     public Location getLoc() {
