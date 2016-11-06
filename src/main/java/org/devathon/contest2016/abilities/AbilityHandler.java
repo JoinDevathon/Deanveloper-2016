@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.devathon.contest2016.SteVa;
 
 /**
  * @author Dean
@@ -35,9 +36,11 @@ public class AbilityHandler implements Listener {
     }
 
     public void onRightClick(PlayerEvent e) {
-        for (Ability a : Ability.values()) {
-            if(a.getAbility(e.getPlayer()).getItem().equals(e.getPlayer().getInventory().getItemInMainHand())) {
-                a.getAbility(e.getPlayer()).onRightClick(e.getPlayer());
+        SteVa steVa = SteVa.getPlayers().get(e.getPlayer().getUniqueId());
+
+        for (AbilityBase ability : steVa.getAbilities()) {
+            if(ability.getItem().equals(e.getPlayer().getInventory().getItemInMainHand())) {
+                ability.onRightClick(e.getPlayer());
                 if(e instanceof Cancellable) {
                     ((Cancellable) e).setCancelled(true);
                 }

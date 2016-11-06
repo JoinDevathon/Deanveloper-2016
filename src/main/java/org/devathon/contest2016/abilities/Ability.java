@@ -3,7 +3,6 @@ package org.devathon.contest2016.abilities;
 import org.bukkit.entity.Player;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * @author Dean
