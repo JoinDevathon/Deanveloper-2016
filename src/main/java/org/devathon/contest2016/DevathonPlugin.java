@@ -10,12 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.devathon.contest2016.abilities.AbilityHandler;
-import org.devathon.contest2016.model.IdleModel;
+import org.devathon.contest2016.model.MechModel;
 
 public class DevathonPlugin extends JavaPlugin {
     private static DevathonPlugin instance;
     private static World mainWorld;
-    private IdleModel dummy;
+    private MechModel dummy;
 
     public static DevathonPlugin getInstance() {
         return instance;
@@ -55,7 +55,7 @@ public class DevathonPlugin extends JavaPlugin {
                 if(dummy != null) {
                     dummy.setLoc(p.getLocation());
                 } else {
-                    dummy = new IdleModel(p.getLocation());
+                    dummy = new MechModel(p.getLocation());
                 }
             } else if (args[0].equalsIgnoreCase("clear")){
                 dummy.destroy();

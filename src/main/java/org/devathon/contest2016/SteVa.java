@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.devathon.contest2016.abilities.Ability;
 import org.devathon.contest2016.abilities.AbilityBase;
-import org.devathon.contest2016.model.IdleModel;
+import org.devathon.contest2016.model.MechModel;
 
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
@@ -20,14 +20,14 @@ public class SteVa implements Listener {
 
     private final static Map<UUID, SteVa> players = new HashMap<>(4);
 
-    private final IdleModel model;
+    private final MechModel model;
     private final WeakReference<Player> player;
     private final UUID id;
     private final AbilityBase[] abilities;
 
     public SteVa(Player player) {
         this.player = new WeakReference<>(player);
-        this.model = new IdleModel(player.getLocation());
+        this.model = new MechModel(player.getLocation());
         this.id = player.getUniqueId();
 
         players.put(player.getUniqueId(), this);
@@ -55,7 +55,7 @@ public class SteVa implements Listener {
         }
     }
 
-    public IdleModel getModel() {
+    public MechModel getModel() {
         return model;
     }
 
