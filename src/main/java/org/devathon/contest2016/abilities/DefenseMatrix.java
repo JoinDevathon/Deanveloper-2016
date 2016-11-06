@@ -1,11 +1,11 @@
 package org.devathon.contest2016.abilities;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.server.v1_10_R1.*;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +18,6 @@ import org.devathon.contest2016.model.DefenseMatrixModel;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.UUID;
 
 /**
  * @author Dean
@@ -47,7 +46,7 @@ public class DefenseMatrix implements AbilityBase {
         // If the usage meter isn't empty and "cooldown" isn't in effect
         if (usage > 0 && cooldown.isBefore(LocalDateTime.now())) {
             // This will run it down in ~4 seconds
-            setUsage(getUsage() - 16, p);
+            setUsage(Math.max(0, getUsage() - 16), p);
             cooldown = LocalDateTime.now().plus(250, ChronoUnit.MILLIS);
 
             DefenseMatrixModel model = new DefenseMatrixModel(p.getLocation());
@@ -56,7 +55,7 @@ public class DefenseMatrix implements AbilityBase {
                 defenseTask.cancel();
             }
             defenseTask = new BukkitRunnable() {
-                boolean ranAlready = false;
+                int ticksRan = 0;
 
                 @Override
                 public void run() {
@@ -68,17 +67,17 @@ public class DefenseMatrix implements AbilityBase {
                             .filter(proj -> proj.getLocation().distanceSquared(p.getLocation()) < 10 * 10)
                             .filter(proj -> model.isInside(proj.getLocation()))
                             .forEach(proj -> {
-                                proj.getWorld().spawnParticle(Particle.SPELL_WITCH, proj.getLocation(), 1);
+                                proj.getWorld().spawnParticle(Particle.SPELL_WITCH, proj.getLocation(), 5, 0, 0, 0, .5);
                                 proj.getWorld().playSound(proj.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1f, 1f);
                                 proj.remove();
                                 EntityProperties.remove(proj); // just in case
                             });
 
-                    if (ranAlready) {
+                    if (ticksRan >= 5) {
                         this.cancel();
                         defenseTask = null;
                     }
-                    ranAlready = true;
+                    ticksRan++;
                 }
             }.runTaskTimer(DevathonPlugin.getInstance(), 0L, 1L);
 
@@ -89,7 +88,7 @@ public class DefenseMatrix implements AbilityBase {
             regenTask = new BukkitRunnable() {
                 @Override
                 public void run() {
-                    setUsage(Math.min(getUsage() + 10, 100), p);
+                    setUsage(Math.min(getUsage() + 1, 100), p);
 
                     if (getUsage() == 100) {
                         this.cancel();
@@ -106,11 +105,17 @@ public class DefenseMatrix implements AbilityBase {
 
     public void setUsage(int usage, Player toSendMessage) {
         this.usage = usage;
-
-        String text = "§d" + new String(new char[usage]).replace("\0", "|");
-        text += "§7" + new String(new char[100 - usage]).replace("\0", "|");
         if (toSendMessage != null) {
-            toSendMessage.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(text));
+
+            // API is currently broken (srs, ask kenny about it) so I gotta do packets.
+            // I wish I didn't have to, though, if that means anything to whoever reads this.
+
+            PacketPlayOutChat packet = new PacketPlayOutChat(
+                    IChatBaseComponent.ChatSerializer.b(
+                            "§a" + new String(new char[usage]).replace("\0", "|") +
+                                    "§c" + new String(new char[100 - usage]).replace("\0", "|")),
+                    (byte) 2);
+            ((CraftPlayer) toSendMessage).getHandle().playerConnection.sendPacket(packet);
         }
     }
 }

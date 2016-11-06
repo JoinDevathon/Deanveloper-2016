@@ -1,8 +1,11 @@
 package org.devathon.contest2016.model;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.entity.EntityType;
 import org.bukkit.util.Vector;
+import org.devathon.contest2016.DevathonPlugin;
 import org.devathon.contest2016.misc.Utils;
 
 import java.util.Arrays;
@@ -70,16 +73,23 @@ public class DefenseMatrixModel {
         Vector step = until.clone().normalize().multiply(.2);
         Location mutatable = start.clone();
         do {
-            start.getWorld().spawnParticle(Particle.CRIT_MAGIC, mutatable, 1);
+            start.getWorld().spawnParticle(Particle.CRIT_MAGIC, mutatable, 1, 0, 0, 0, 0);
             mutatable.add(step);
         } while (mutatable.distanceSquared(start) < until.lengthSquared());
     }
 
-    public void setLoc(Location loc) {
-        this.loc = loc;
+    public void setLoc(Location newLoc) {
+        this.loc = newLoc.clone();
+        this.loc.setPitch(newLoc.getPitch() - 30); // adjust for third person
+
         locations = Arrays.stream(parts)
                 .map(v -> {
-                    Vector afterRotation = Utils.rotateAroundY(v, Math.toRadians(loc.getYaw()));
+                    Vector afterRotation = Utils.rotateVector(
+                            v,
+                            Math.toRadians(-loc.getPitch()),
+                            Math.toRadians(loc.getYaw()),
+                            0
+                    );
                     return loc.clone().add(afterRotation);
                 }).toArray(Location[]::new);
     }
@@ -89,18 +99,17 @@ public class DefenseMatrixModel {
     public boolean isInside(Location other) {
         // Calculate where the vectors point to
         Vector relative = other.clone().subtract(loc).toVector();
-        Location temp = loc.clone();
-        temp.setPitch(0);
 
-        relative = Utils.rotateAroundY(relative, loc.getDirection().angle(new Vector(1, 0, 0)));
+        relative = Utils.rotateAroundY(relative, Math.toRadians(-(loc.getYaw())));
+        relative = Utils.rotateAroundX(relative, Math.toRadians(loc.getPitch()));
 
         return isInsideX(relative) && isInsideY(relative) && isInsideZ(relative);
     }
 
     // -(2 + 1/7 * z) < locX < 2 + 1/7 * z
     private boolean isInsideX(Vector relative) {
-        return -(3.0 + 1.0 / 7.0 * relative.getZ()) < relative.getY() &&
-                relative.getX() < (3.0 + 1.0 / 7.0 * relative.getZ());
+        return -(2.0 + 1.0 / 7.0 * relative.getZ()) < relative.getY() &&
+                relative.getX() < (2.0 + 1.0 / 7.0 * relative.getZ());
     }
 
     // .5 - .5 * z < locY < 3 + 2 * z

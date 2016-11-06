@@ -34,7 +34,7 @@ public class SteVa implements Listener {
         Bukkit.getPluginManager().registerEvents(this, DevathonPlugin.getInstance());
 
         abilities = Arrays.stream(Ability.values())
-                .map(ability -> ability.getAbility(player))
+                .map(Ability::getAbility)
                 .toArray(AbilityBase[]::new);
     }
 

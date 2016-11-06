@@ -9,12 +9,7 @@ import java.util.UUID;
  * @author Dean
  */
 public class Placeholder implements AbilityBase {
-    public Placeholder(Player player) {
-    }
-
-    @Override
-    public UUID getId() {
-        return null;
+    public Placeholder() {
     }
 
     @Override
