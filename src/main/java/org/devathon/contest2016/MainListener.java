@@ -62,7 +62,7 @@ public class MainListener implements Listener {
     @EventHandler
     public void onHit(EntityDamageByEntityEvent e) {
         if (EntityProperties.hasProperty(e.getDamager().getUniqueId(), "fusionCannon")) {
-            e.setDamage(4.0);
+            e.setDamage(1.5);
         }
     }
 }
