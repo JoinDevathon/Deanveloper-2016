@@ -57,7 +57,10 @@ public class FusionCannon implements AbilityBase {
                 shootFrom.setPitch(p.getLocation().getPitch() - 30); // raise pitch by to adjust for third person
 
                 // Add the direction the player is facing to prevent intersection with the mech
-                shootFrom.add(p.getLocation().getDirection());
+                // (the fancy pitch magic is to make sure it doesn't include up/down
+                Location loc = p.getLocation();
+                loc.setPitch(0);
+                shootFrom.add(loc.getDirection().normalize());
 
                 // Spawn 10 arrows with high velocity and wide spread
                 for (int i = 0; i < 10; i++) {
@@ -72,7 +75,7 @@ public class FusionCannon implements AbilityBase {
                         new PotionEffect(
                                 PotionEffectType.SLOW,
                                 Integer.MAX_VALUE,  // duration
-                                0,                  // amplifier
+                                1,                  // amplifier
                                 true,               // ambient
                                 false               // particles
                         ), true);
