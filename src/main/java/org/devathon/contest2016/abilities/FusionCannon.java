@@ -2,6 +2,7 @@ package org.devathon.contest2016.abilities;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -34,19 +35,19 @@ public class FusionCannon implements AbilityBase {
     }
 
     @Override
-    public void onRightClick(PlayerInteractEntityEvent e) {
-        if (cooldown.get(e.getPlayer().getUniqueId()).isBefore(LocalDateTime.now())) {
-            SteVA steva = SteVA.getPlayers().get(e.getPlayer().getUniqueId());
+    public void onRightClick(Player p) {
+        if (cooldown.get(p.getUniqueId()).isBefore(LocalDateTime.now())) {
+            SteVA steva = SteVA.getPlayers().get(p.getUniqueId());
             if (steva != null) {
-                boolean isRightHand = whichHand.getOrDefault(e.getPlayer().getUniqueId(), false);
+                boolean isRightHand = whichHand.getOrDefault(p.getUniqueId(), false);
                 Location toShootFrom = isRightHand ? steva.getModel().rightHandLoc() : steva.getModel().leftHandLoc();
 
                 for (int i = 0; i < 10; i++) {
-                    DevathonPlugin.getMainWorld().spawnArrow(toShootFrom, e.getPlayer().getLocation().getDirection(), 1, 30);
+                    DevathonPlugin.getMainWorld().spawnArrow(toShootFrom, p.getLocation().getDirection(), 1, 30);
                 }
 
-                cooldown.put(e.getPlayer().getUniqueId(), LocalDateTime.now().plus(150, ChronoUnit.MILLIS));
-                whichHand.put(e.getPlayer().getUniqueId(), !isRightHand);
+                cooldown.put(p.getUniqueId(), LocalDateTime.now().plus(150, ChronoUnit.MILLIS));
+                whichHand.put(p.getUniqueId(), !isRightHand);
             }
         }
     }

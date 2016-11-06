@@ -1,5 +1,6 @@
 package org.devathon.contest2016.abilities;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -8,5 +9,5 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface AbilityBase {
     public ItemStack getItem();
-    public void onRightClick(PlayerInteractEntityEvent e);
+    public void onRightClick(Player p);
 }
