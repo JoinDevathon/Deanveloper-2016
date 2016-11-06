@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.devathon.contest2016.abilities.Ability;
+import org.devathon.contest2016.misc.EntityProperties;
 
 /**
  * @author Dean

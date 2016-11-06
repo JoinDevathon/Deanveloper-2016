@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.devathon.contest2016.DevathonPlugin;
-import org.devathon.contest2016.EntityProperties;
+import org.devathon.contest2016.misc.EntityProperties;
 import org.devathon.contest2016.SteVa;
 
 import java.time.LocalDateTime;

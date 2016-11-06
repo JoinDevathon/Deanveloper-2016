@@ -1,4 +1,4 @@
-package org.devathon.contest2016;
+package org.devathon.contest2016.misc;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;

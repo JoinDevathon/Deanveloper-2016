@@ -1,10 +1,9 @@
 package org.devathon.contest2016;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.devathon.contest2016.model.IdleModel;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package org.devathon.contest2016;
+package org.devathon.contest2016.model;
 
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
@@ -8,6 +8,8 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
+import org.devathon.contest2016.DevathonPlugin;
+import org.devathon.contest2016.misc.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,7 @@ public class IdleModel {
     @SuppressWarnings("deprecation")
     public IdleModel(Location loc) {
         this.loc = loc;
-        populateModel();
+        constructModel();
 
         leftHand = parts.get(parts.size() - 1);
         rightHand = parts.get(parts.size() - 2);
@@ -48,7 +50,10 @@ public class IdleModel {
     }
 
     @SuppressWarnings("deprecation")
-    private void populateModel() {
+    private void constructModel() {
+        // I would use loops to add all of these, except specifying each one individually
+        // gives me the ability to adjust things like color, angles, and oval-like shapes
+
         // legs
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(.4, .5, 0)));
         parts.add(new ModelPart(DyeColor.WHITE, new Vector(-.4, .5, 0)));
@@ -134,6 +139,7 @@ public class IdleModel {
         parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3, 2.5, -.1)));
 
         // arms
+        // this loop makes the arms nice and thick by using 4 armorstands per unit outward
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 parts.add(new ModelPart(DyeColor.PINK, new Vector(1.3 + i * .1, 2 - j * .1, 0)));
@@ -165,23 +171,10 @@ public class IdleModel {
         this.loc = loc;
 
         for (ModelPart part : parts) {
-            Vector afterRotation = rotateAroundY(part.relativeLoc, Math.toRadians(loc.getYaw()));
+            Vector afterRotation = Utils.rotateAroundY(part.relativeLoc, Math.toRadians(loc.getYaw()));
             Location partLoc = loc.clone().add(afterRotation);
             part.stand.teleport(partLoc);
         }
-    }
-
-    private Vector rotateAroundY(Vector vec, double rad) {
-        Vector result = vec.clone();
-        double x = result.getX();
-        double z = result.getZ();
-        double sin = Math.sin(-rad);
-        double cos = Math.cos(-rad);
-
-        result.setX(z * sin + x * cos);
-        result.setZ(z * cos - x * sin);
-
-        return result;
     }
 
     private class ModelPart {

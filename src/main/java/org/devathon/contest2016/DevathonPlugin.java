@@ -1,7 +1,5 @@
 package org.devathon.contest2016;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -12,10 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.devathon.contest2016.abilities.AbilityHandler;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import org.devathon.contest2016.model.IdleModel;
 
 public class DevathonPlugin extends JavaPlugin {
     private static DevathonPlugin instance;
