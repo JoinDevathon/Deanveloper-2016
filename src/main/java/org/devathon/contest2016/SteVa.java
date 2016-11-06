@@ -1,5 +1,7 @@
 package org.devathon.contest2016;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -12,15 +14,15 @@ import java.util.UUID;
 /**
  * @author Dean
  */
-public class SteVA implements Listener {
+public class SteVa implements Listener {
 
-    private final static Map<UUID, SteVA> players = new HashMap<>(4);
+    private final static Map<UUID, SteVa> players = new HashMap<>(4);
 
     private final IdleModel model;
     private final WeakReference<Player> player;
     private final UUID id;
 
-    public SteVA(Player player) {
+    public SteVa(Player player) {
         this.player = new WeakReference<>(player);
         this.model = new IdleModel(player.getLocation());
         this.id = player.getUniqueId();
@@ -29,7 +31,7 @@ public class SteVA implements Listener {
         Bukkit.getPluginManager().registerEvents(this, DevathonPlugin.getInstance());
     }
 
-    public static Map<UUID, SteVA> getPlayers() {
+    public static Map<UUID, SteVa> getPlayers() {
         return players;
     }
 
