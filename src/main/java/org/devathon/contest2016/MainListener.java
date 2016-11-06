@@ -27,7 +27,13 @@ public class MainListener implements Listener {
 
                 // Give the player invisibility
                 e.getPlayer().addPotionEffect(
-                        new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
+                        new PotionEffect(
+                                PotionEffectType.INVISIBILITY,
+                                Integer.MAX_VALUE,  // duration
+                                0,                  // amplifier
+                                true,               // ambient
+                                false               // particles
+                        ), true
                 );
 
                 // Populate their inventory

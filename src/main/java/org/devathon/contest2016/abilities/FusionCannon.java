@@ -7,6 +7,8 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.devathon.contest2016.DevathonPlugin;
@@ -65,14 +67,22 @@ public class FusionCannon implements AbilityBase {
 
                 DevathonPlugin.getMainWorld().playSound(shootFrom, Sound.ENTITY_GENERIC_EXPLODE, .25f, 2f);
 
-                p.setWalkSpeed(.1f);
+                // Slow down until the next shot, reset when they stop shooting
+                p.addPotionEffect(
+                        new PotionEffect(
+                                PotionEffectType.SLOW,
+                                Integer.MAX_VALUE,  // duration
+                                0,                  // amplifier
+                                true,               // ambient
+                                false               // particles
+                        ), true);
                 if(slowUntilNextShot != null) {
                     slowUntilNextShot.cancel();
                 }
                 slowUntilNextShot = new BukkitRunnable() {
                     @Override
                     public void run() {
-                        p.setWalkSpeed(.2f);
+                        p.removePotionEffect(PotionEffectType.SLOW);
                     }
                 }.runTaskLater(DevathonPlugin.getInstance(), 5L);
 
