@@ -80,7 +80,7 @@ public class DefenseMatrixModel {
 
     public void setLoc(Location newLoc) {
         this.loc = newLoc.clone();
-        this.loc.setPitch(newLoc.getPitch() - 30); // adjust for third person
+        this.loc.setPitch(newLoc.getPitch() - 20); // adjust for third person
 
         locations = Arrays.stream(parts)
                 .map(v -> {

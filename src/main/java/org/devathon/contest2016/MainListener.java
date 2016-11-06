@@ -52,12 +52,12 @@ public class MainListener implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        SteVa.getPlayers().get(e.getPlayer().getUniqueId()).destroy();
+        SteVa.get(e.getPlayer()).destroy();
     }
 
     @EventHandler
     public void onLeave(PlayerKickEvent e) {
-        SteVa.getPlayers().get(e.getPlayer().getUniqueId()).destroy();
+        SteVa.get(e.getPlayer()).destroy();
     }
 
     @EventHandler

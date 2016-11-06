@@ -42,6 +42,10 @@ public class SteVa implements Listener {
         return players;
     }
 
+    public static SteVa get(Player p) {
+        return players.get(p.getUniqueId());
+    }
+
     public Player getPlayer() {
         Player p = player.get();
         if (p != null) {

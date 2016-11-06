@@ -45,7 +45,7 @@ public class FusionCannon implements AbilityBase {
                 Location shootFrom = isRightHand ? steva.getModel().rightHandLoc() : steva.getModel().leftHandLoc();
                 shootFrom.setDirection(p.getLocation().getDirection());
                 shootFrom.setYaw(p.getLocation().getYaw());
-                shootFrom.setPitch(p.getLocation().getPitch() - 30); // raise pitch by to adjust for third person
+                shootFrom.setPitch(p.getLocation().getPitch() - 30); // adjust for third person
 
                 // Add the direction the player is facing to prevent intersection with the mech
                 // (the fancy pitch magic is to make sure it doesn't include up/down
