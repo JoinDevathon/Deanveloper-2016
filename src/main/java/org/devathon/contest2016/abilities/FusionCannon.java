@@ -28,7 +28,6 @@ public class FusionCannon implements AbilityBase {
     private Map<UUID, LocalDateTime> cooldown = new HashMap<>();
     private Map<UUID, Boolean> whichHand = new HashMap<>();
     private ItemStack item = new ItemStack(Material.IRON_BARDING);
-    private BukkitTask slowUntilNextShot;
 
     FusionCannon() {
         ItemMeta meta = item.getItemMeta();
@@ -69,25 +68,6 @@ public class FusionCannon implements AbilityBase {
                 }
 
                 DevathonPlugin.getMainWorld().playSound(shootFrom, Sound.ENTITY_GENERIC_EXPLODE, .25f, 2f);
-
-                // Slow down until the next shot, reset when they stop shooting
-                p.addPotionEffect(
-                        new PotionEffect(
-                                PotionEffectType.SLOW,
-                                Integer.MAX_VALUE,  // duration
-                                3,                  // amplifier
-                                true,               // ambient
-                                false               // particles
-                        ), true);
-                if(slowUntilNextShot != null) {
-                    slowUntilNextShot.cancel();
-                }
-                slowUntilNextShot = new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        p.removePotionEffect(PotionEffectType.SLOW);
-                    }
-                }.runTaskLater(DevathonPlugin.getInstance(), 7L);
 
                 // Start a short cooldown and switch the hand being used
                 cooldown.put(p.getUniqueId(), LocalDateTime.now().plus(150, ChronoUnit.MILLIS));
