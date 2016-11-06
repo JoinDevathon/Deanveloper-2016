@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.devathon.contest2016.abilities.Ability;
+import org.devathon.contest2016.abilities.AbilityBase;
 import org.devathon.contest2016.misc.EntityProperties;
 
 /**
@@ -25,7 +25,7 @@ public class MainListener implements Listener {
             @Override
             public void run() {
                 // Create a mech for the player
-                new SteVa(e.getPlayer());
+                SteVa steVa = new SteVa(e.getPlayer());
 
                 // Give the player invisibility
                 e.getPlayer().addPotionEffect(
@@ -40,11 +40,11 @@ public class MainListener implements Listener {
 
                 // Populate their inventory
                 e.getPlayer().getInventory().clear();
-                for (Ability a : Ability.values()) {
-                    if (a.getAbility().getItem() == null) {
+                for (AbilityBase ability : steVa.getAbilities()) {
+                    if (ability.getItem() == null) {
                         continue;
                     }
-                    e.getPlayer().getInventory().addItem(a.getAbility().getItem());
+                    e.getPlayer().getInventory().addItem(ability.getItem());
                 }
             }
         }.runTaskLater(DevathonPlugin.getInstance(), 5L);

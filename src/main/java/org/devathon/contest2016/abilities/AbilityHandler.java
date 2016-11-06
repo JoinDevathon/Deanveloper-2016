@@ -36,8 +36,8 @@ public class AbilityHandler implements Listener {
 
     public void onRightClick(PlayerEvent e) {
         for (Ability a : Ability.values()) {
-            if(a.getAbility().getItem().equals(e.getPlayer().getInventory().getItemInMainHand())) {
-                a.getAbility().onRightClick(e.getPlayer());
+            if(a.getAbility(e.getPlayer()).getItem().equals(e.getPlayer().getInventory().getItemInMainHand())) {
+                a.getAbility(e.getPlayer()).onRightClick(e.getPlayer());
                 if(e instanceof Cancellable) {
                     ((Cancellable) e).setCancelled(true);
                 }

@@ -1,6 +1,7 @@
 package org.devathon.contest2016.model;
 
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.util.Vector;
 import org.devathon.contest2016.misc.Utils;
 
@@ -38,6 +39,42 @@ public class DefenseMatrixModel {
         return loc;
     }
 
+    public void draw() {
+        // near square
+        drawBetween(0, 1);
+        drawBetween(0, 2);
+        drawBetween(1, 3);
+        drawBetween(2, 3);
+
+        // far square
+        drawBetween(4, 5);
+        drawBetween(4, 6);
+        drawBetween(5, 7);
+        drawBetween(6, 7);
+
+        // connect squares
+        drawBetween(0, 4);
+        drawBetween(1, 5);
+        drawBetween(2, 6);
+        drawBetween(3, 7);
+    }
+
+    /**
+     * Draws between two locations specified in the locations array.
+     */
+    private void drawBetween(int start, int end) {
+        drawBetween(locations[start], locations[end].clone().subtract(locations[start]).toVector());
+    }
+
+    private void drawBetween(Location start, Vector until) {
+        Vector step = until.clone().normalize().multiply(.2);
+        Location mutatable = start.clone();
+        do {
+            start.getWorld().spawnParticle(Particle.CRIT_MAGIC, mutatable, 1);
+            mutatable.add(step);
+        } while (mutatable.distanceSquared(start) < until.lengthSquared());
+    }
+
     public void setLoc(Location loc) {
         this.loc = loc;
         locations = Arrays.stream(parts)
@@ -62,8 +99,8 @@ public class DefenseMatrixModel {
 
     // -(2 + 1/7 * z) < locX < 2 + 1/7 * z
     private boolean isInsideX(Vector relative) {
-        return -(3.0 + 1.0/7.0 * relative.getZ()) < relative.getY() &&
-                relative.getX() < (3.0 + 1.0/7.0 * relative.getZ());
+        return -(3.0 + 1.0 / 7.0 * relative.getZ()) < relative.getY() &&
+                relative.getX() < (3.0 + 1.0 / 7.0 * relative.getZ());
     }
 
     // .5 - .5 * z < locY < 3 + 2 * z

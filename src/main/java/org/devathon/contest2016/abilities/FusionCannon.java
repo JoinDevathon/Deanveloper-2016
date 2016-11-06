@@ -8,27 +8,32 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.devathon.contest2016.DevathonPlugin;
-import org.devathon.contest2016.misc.EntityProperties;
 import org.devathon.contest2016.SteVa;
+import org.devathon.contest2016.misc.EntityProperties;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
  * @author Dean
  */
 public class FusionCannon implements AbilityBase {
-    private Map<UUID, LocalDateTime> cooldown = new HashMap<>();
-    private Map<UUID, Boolean> whichHand = new HashMap<>();
+    private final UUID id;
+    private LocalDateTime cooldown = LocalDateTime.MIN;
+    private boolean isRightHand = false;
     private ItemStack item = new ItemStack(Material.IRON_BARDING);
 
-    FusionCannon() {
+    FusionCannon(Player p) {
+        this.id = p.getUniqueId();
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("§dFusion Cannon");
         item.setItemMeta(meta);
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
     }
 
     @Override
@@ -39,13 +44,12 @@ public class FusionCannon implements AbilityBase {
     @Override
     public void onRightClick(Player p) {
         // Check to see if the player is on cooldown
-        if (cooldown.getOrDefault(p.getUniqueId(), LocalDateTime.MIN).isBefore(LocalDateTime.now())) {
+        if (cooldown.isBefore(LocalDateTime.now())) {
 
             // Check if the player has a mech
             SteVa steva = SteVa.getPlayers().get(p.getUniqueId());
             if (steva != null) {
                 // Get which hand to shoot from
-                boolean isRightHand = whichHand.getOrDefault(p.getUniqueId(), false);
                 Location shootFrom = isRightHand ? steva.getModel().rightHandLoc() : steva.getModel().leftHandLoc();
                 shootFrom.setDirection(p.getLocation().getDirection());
                 shootFrom.setYaw(p.getLocation().getYaw());
@@ -66,8 +70,8 @@ public class FusionCannon implements AbilityBase {
                 DevathonPlugin.getMainWorld().playSound(shootFrom, Sound.ENTITY_GENERIC_EXPLODE, .25f, 2f);
 
                 // Start a short cooldown and switch the hand being used
-                cooldown.put(p.getUniqueId(), LocalDateTime.now().plus(150, ChronoUnit.MILLIS));
-                whichHand.put(p.getUniqueId(), !isRightHand);
+                cooldown = LocalDateTime.now().plus(150, ChronoUnit.MILLIS);
+                isRightHand = !isRightHand;
             }
         }
     }

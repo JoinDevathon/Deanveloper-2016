@@ -1,20 +1,25 @@
 package org.devathon.contest2016.abilities;
 
+import org.bukkit.entity.Player;
+
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 /**
  * @author Dean
  */
 public enum Ability {
-    FUSION_CANNON(new FusionCannon()),
-    DEFENSE_MATRIX(new DefenseMatrix()),
-    BOOSTERS(new Placeholder());
+    FUSION_CANNON(FusionCannon::new),
+    DEFENSE_MATRIX(DefenseMatrix::new),
+    BOOSTERS(Placeholder::new);
 
-    private AbilityBase ability;
+    private Function<Player, AbilityBase> ability;
 
-    Ability(AbilityBase ability) {
+    Ability(Function<Player, AbilityBase> ability) {
         this.ability = ability;
     }
 
-    public AbilityBase getAbility() {
-        return ability;
+    public AbilityBase getAbility(Player p) {
+        return ability.apply(p);
     }
 }
