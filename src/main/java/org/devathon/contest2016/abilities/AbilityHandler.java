@@ -15,7 +15,7 @@ import org.bukkit.inventory.EquipmentSlot;
 public class AbilityHandler implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent e) {
-        if (e.getHand() == EquipmentSlot.HAND) {
+        if (e.getHand() == EquipmentSlot.HAND && e.getAction().name().startsWith("RIGHT")) {
             onRightClick((PlayerEvent) e);
         }
     }

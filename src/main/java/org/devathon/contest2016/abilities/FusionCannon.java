@@ -64,7 +64,7 @@ public class FusionCannon implements AbilityBase {
 
                 // Spawn 10 arrows with high velocity and wide spread
                 for (int i = 0; i < 10; i++) {
-                    Arrow a = DevathonPlugin.getMainWorld().spawnArrow(shootFrom, shootFrom.getDirection(), 3, 15);
+                    Arrow a = DevathonPlugin.getMainWorld().spawnArrow(shootFrom, shootFrom.getDirection(), 2, 15);
                     EntityProperties.addProperty(a.getUniqueId(), "fusionCannon");
                 }
 
@@ -75,7 +75,7 @@ public class FusionCannon implements AbilityBase {
                         new PotionEffect(
                                 PotionEffectType.SLOW,
                                 Integer.MAX_VALUE,  // duration
-                                1,                  // amplifier
+                                3,                  // amplifier
                                 true,               // ambient
                                 false               // particles
                         ), true);
@@ -87,7 +87,7 @@ public class FusionCannon implements AbilityBase {
                     public void run() {
                         p.removePotionEffect(PotionEffectType.SLOW);
                     }
-                }.runTaskLater(DevathonPlugin.getInstance(), 5L);
+                }.runTaskLater(DevathonPlugin.getInstance(), 7L);
 
                 // Start a short cooldown and switch the hand being used
                 cooldown.put(p.getUniqueId(), LocalDateTime.now().plus(150, ChronoUnit.MILLIS));
