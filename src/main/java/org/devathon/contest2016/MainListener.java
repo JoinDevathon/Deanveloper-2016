@@ -2,8 +2,10 @@ package org.devathon.contest2016;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -20,12 +22,17 @@ public class MainListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
+                // Create a mech for the player
                 new SteVa(e.getPlayer());
+
+                // Give the player invisibility
                 e.getPlayer().addPotionEffect(
                         new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
                 );
+
+                // Populate their inventory
                 e.getPlayer().getInventory().clear();
-                for(Ability a : Ability.values()) {
+                for (Ability a : Ability.values()) {
                     if (a.getAbility().getItem() == null) {
                         continue;
                     }
@@ -41,9 +48,21 @@ public class MainListener implements Listener {
     }
 
     @EventHandler
+    public void onLeave(PlayerKickEvent e) {
+        SteVa.getPlayers().get(e.getPlayer().getUniqueId()).destroy();
+    }
+
+    @EventHandler
     public void onHit(ProjectileHitEvent e) {
-        if (EntityProperties.hasProperty(e.getEntity(), "removeOnHit")) {
+        if (EntityProperties.hasProperty(e.getEntity(), "fusionCannon")) {
             e.getEntity().remove();
+        }
+    }
+
+    @EventHandler
+    public void onHit(EntityDamageByEntityEvent e) {
+        if (EntityProperties.hasProperty(e.getDamager().getUniqueId(), "fusionCannon")) {
+            e.setDamage(4.0);
         }
     }
 }

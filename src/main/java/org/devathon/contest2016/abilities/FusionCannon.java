@@ -46,13 +46,16 @@ public class FusionCannon implements AbilityBase {
                 // Get which hand to shoot from
                 boolean isRightHand = whichHand.getOrDefault(p.getUniqueId(), false);
                 Location shootFrom = isRightHand ? steva.getModel().rightHandLoc() : steva.getModel().leftHandLoc();
+                shootFrom.setDirection(p.getLocation().getDirection());
+                shootFrom.setYaw(p.getLocation().getYaw());
+                shootFrom.setPitch(p.getLocation().getPitch() - 20); // raise pitch by 20deg to adjust for third person
                 // Add the direction the player is facing to prevent intersection with the mech
                 shootFrom.add(p.getLocation().getDirection());
 
                 // Spawn 10 arrows with high velocity and wide spread
                 for (int i = 0; i < 10; i++) {
-                    Arrow a = DevathonPlugin.getMainWorld().spawnArrow(shootFrom, p.getLocation().getDirection(), 3, 20);
-                    EntityProperties.addProperty(a.getUniqueId(), "removeOnHit");
+                    Arrow a = DevathonPlugin.getMainWorld().spawnArrow(shootFrom, shootFrom.getDirection(), 3, 15);
+                    EntityProperties.addProperty(a.getUniqueId(), "fusionCannon");
                 }
 
                 // Start a short cooldown and switch the hand being used
