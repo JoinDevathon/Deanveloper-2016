@@ -11,8 +11,6 @@ import java.util.UUID;
  */
 public interface AbilityBase {
 
-    UUID getId();
-
     ItemStack getItem();
 
     // Even though there is a new AbilityBase per player, we use this method to prevent

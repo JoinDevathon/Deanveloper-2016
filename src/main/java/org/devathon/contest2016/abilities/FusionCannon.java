@@ -19,21 +19,14 @@ import java.util.UUID;
  * @author Dean
  */
 public class FusionCannon implements AbilityBase {
-    private final UUID id;
     private LocalDateTime cooldown = LocalDateTime.MIN;
     private boolean isRightHand = false;
     private ItemStack item = new ItemStack(Material.IRON_BARDING);
 
-    FusionCannon(Player p) {
-        this.id = p.getUniqueId();
+    FusionCannon() {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("§dFusion Cannon");
         item.setItemMeta(meta);
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
     }
 
     @Override

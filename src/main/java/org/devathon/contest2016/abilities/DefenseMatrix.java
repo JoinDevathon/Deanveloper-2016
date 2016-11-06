@@ -24,7 +24,6 @@ import java.util.UUID;
  * @author Dean
  */
 public class DefenseMatrix implements AbilityBase {
-    private final UUID id;
     @SuppressWarnings("deprecation")
     private final ItemStack item = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.BLUE.getWoolData());
     private LocalDateTime cooldown = LocalDateTime.MIN;
@@ -32,16 +31,10 @@ public class DefenseMatrix implements AbilityBase {
     private BukkitTask regenTask;
     private BukkitTask defenseTask;
 
-    DefenseMatrix(Player p) {
-        this.id = p.getUniqueId();
+    DefenseMatrix() {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("§dDefense Matrix");
         item.setItemMeta(meta);
-    }
-
-    @Override
-    public UUID getId() {
-        return id;
     }
 
     @Override
