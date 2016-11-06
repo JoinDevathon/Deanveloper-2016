@@ -3,6 +3,7 @@ package org.devathon.contest2016;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -63,6 +64,7 @@ public class MainListener implements Listener {
         if (EntityProperties.hasProperty(e.getEntity(), "fusionCannon")) {
             e.getEntity().remove();
         }
+        EntityProperties.remove(e.getEntity());
     }
 
     @EventHandler
@@ -70,5 +72,10 @@ public class MainListener implements Listener {
         if (EntityProperties.hasProperty(e.getDamager().getUniqueId(), "fusionCannon")) {
             e.setDamage(1.5);
         }
+    }
+
+    @EventHandler
+    public void entityDeath(EntityDeathEvent e) {
+        EntityProperties.remove(e.getEntity());
     }
 }

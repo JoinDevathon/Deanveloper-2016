@@ -25,6 +25,10 @@ public class EntityProperties {
         return getProperty(id).contains(s);
     }
 
+    public static void remove(UUID id) {
+        properties.removeAll(id);
+    }
+
     public static void addProperty(Entity e, String s) {
         properties.put(e.getUniqueId(), s);
     }
@@ -35,6 +39,10 @@ public class EntityProperties {
 
     public static boolean hasProperty(Entity e, String s) {
         return getProperty(e.getUniqueId()).contains(s);
+    }
+
+    public static void remove(Entity e) {
+        properties.removeAll(e.getUniqueId());
     }
 
     public static Multimap<UUID, String> getProperties() {
