@@ -5,7 +5,7 @@ package org.devathon.contest2016.abilities;
  */
 public enum Ability {
     FUSION_CANNON(new FusionCannon()),
-    DEFENSE_MATRIX(new Placeholder()),
+    DEFENSE_MATRIX(new DefenseMatrix()),
     BOOSTERS(new Placeholder());
 
     private AbilityBase ability;
