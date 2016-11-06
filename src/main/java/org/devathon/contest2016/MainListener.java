@@ -23,6 +23,7 @@ public class MainListener implements Listener {
                 e.getPlayer().addPotionEffect(
                         new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 2, true, false), true
                 );
+                e.getPlayer().getInventory().clear();
                 for(Ability a : Ability.values()) {
                     if (a.getAbility().getItem() == null) {
                         continue;

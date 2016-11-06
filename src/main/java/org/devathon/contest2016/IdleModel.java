@@ -42,7 +42,9 @@ public class IdleModel {
         populateModel();
 
         leftHand = parts.get(parts.size() - 1);
-        rightHand = parts.get(parts.size() - 1);
+        rightHand = parts.get(parts.size() - 2);
+
+        parts.add(new ModelPart(SKULL, new Vector(0, 2.1, -.35)));
     }
 
     @SuppressWarnings("deprecation")
@@ -144,8 +146,6 @@ public class IdleModel {
                 parts.add(new ModelPart(DyeColor.PINK, new Vector(-1.3 - i * .1, 2 - j * .1, .8)));
             }
         }
-
-        parts.add(new ModelPart(SKULL, new Vector(0, 2.1, -.35)));
     }
 
     public Location getLoc() {

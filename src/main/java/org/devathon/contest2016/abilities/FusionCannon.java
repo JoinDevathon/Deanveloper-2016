@@ -36,7 +36,7 @@ public class FusionCannon implements AbilityBase {
 
     @Override
     public void onRightClick(Player p) {
-        if (cooldown.get(p.getUniqueId()).isBefore(LocalDateTime.now())) {
+        if (cooldown.getOrDefault(p.getUniqueId(), LocalDateTime.MIN).isBefore(LocalDateTime.now())) {
             SteVA steva = SteVA.getPlayers().get(p.getUniqueId());
             if (steva != null) {
                 boolean isRightHand = whichHand.getOrDefault(p.getUniqueId(), false);

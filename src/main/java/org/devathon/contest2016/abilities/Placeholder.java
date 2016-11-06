@@ -1,6 +1,6 @@
 package org.devathon.contest2016.abilities;
 
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -13,5 +13,6 @@ public class Placeholder implements AbilityBase {
     }
 
     @Override
-    public void onRightClick(PlayerInteractEntityEvent e) {}
+    public void onRightClick(Player p) {
+    }
 }
