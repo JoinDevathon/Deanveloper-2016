@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 public enum Ability {
     FUSION_CANNON(FusionCannon::new),
     DEFENSE_MATRIX(DefenseMatrix::new),
-    BOOSTERS(Placeholder::new);
+    BOOSTERS(Booster::new);
 
     private Supplier<AbilityBase> ability;
 

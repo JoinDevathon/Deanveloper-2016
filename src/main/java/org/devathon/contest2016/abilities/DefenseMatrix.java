@@ -24,7 +24,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class DefenseMatrix implements AbilityBase {
     @SuppressWarnings("deprecation")
-    private final ItemStack item = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.BLUE.getWoolData());
+    private static final ItemStack item = new ItemStack(Material.STAINED_GLASS, 1, DyeColor.BLUE.getWoolData());
     private LocalDateTime cooldown = LocalDateTime.MIN;
     private int usage = 100;
     private BukkitTask regenTask;
